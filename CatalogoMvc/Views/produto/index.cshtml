@@ -1,27 +1,29 @@
 @{
     ViewData["Title"] = "Catálogo de Produtos";
-    var produto = ViewBag.Produtos as List<string> ?? new List<string>();
-    var precos = ViewBag.Precos as List<double> ?? new List<double>();
+   
 }
 
-<h2>Catálogo de Produtos</h2>
-
-<table >
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Preço</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="text-center">
+    <h1 class="display-4">Bem Vindo</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div>
+   <ul>
         @for (int i = 0; i < ViewBag.produto.Count; i++)
         {
-            <tr>
-                <td>@(i + 1)</td>
-                <td>@ViewBag.produto[i]</td>
-                <td>@ViewBag.preco[i].ToString("C")</td>
-            </tr>
+            if (ViewBag.preco[i] < 100)
+            {
+                <li style="color: green;">
+                    @ViewBag.produto[i] - R$ @ViewBag.preco[i]
+                </li>
+            }
+            else
+            {
+                <li>
+                    @ViewBag.produto[i] - R$ @ViewBag.preco[i]
+                </li>
+            }
         }
-    </tbody>
-</table>
+        <p>Total de produtos @ViewBag.produto.Count.</p>
+    </ul>
+</div>
